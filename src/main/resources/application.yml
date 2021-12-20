@@ -1,0 +1,15 @@
+spring.datasource:
+  url: "jdbc:postgresql://localhost:5432/to-do-list-db"
+  username: "postgres"
+  password: "postgres"
+  driver-class-name: org.postgresql.Driver
+  properties:
+    hibernate:
+      id:
+        new_generator_mappings=false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+
+
