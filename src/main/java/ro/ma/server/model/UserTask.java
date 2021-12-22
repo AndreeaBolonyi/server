@@ -1,18 +1,16 @@
 package ro.ma.server.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users_tasks")
-public class UsersTasks implements Serializable {
+@IdClass(UserTaskId.class)
+public class UserTask implements Serializable {
     private int userId;
     private int taskId;
 
-    public UsersTasks() {}
+    public UserTask() {}
 
     @Id
     @Column(name = "userid")
@@ -32,5 +30,13 @@ public class UsersTasks implements Serializable {
 
     public void setTaskId(int taskId) {
         this.taskId = taskId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserTask{" +
+                "userId=" + userId +
+                ", taskId=" + taskId +
+                '}';
     }
 }

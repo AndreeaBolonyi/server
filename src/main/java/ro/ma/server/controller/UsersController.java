@@ -60,10 +60,10 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/new-user", method = RequestMethod.POST)
-    public ResponseEntity<String> addUser(@RequestBody User user) {
+    public ResponseEntity<Integer> addUser(@RequestBody User user) {
         user = usersRepository.save(user);
 
         System.out.println("Added user: " + user);
-        return new ResponseEntity<>("User added: " + user, HttpStatus.OK);
+        return new ResponseEntity<>(user.getUserId(), HttpStatus.OK);
     }
 }

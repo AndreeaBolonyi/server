@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TasksRepository extends JpaRepository<Task, Integer> {
 
-    @Query("from Task t inner join UsersTasks ut on t.taskId = ut.taskId where ut.userId = :userId")
+    @Query("from Task t inner join UserTask ut on t.taskId = ut.taskId where ut.userId = :userId")
     List<Task> findByUserId(int userId);
 }

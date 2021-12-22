@@ -29,27 +29,29 @@ public class TasksController {
     }
 
     @RequestMapping(value = "/new-task", method = RequestMethod.POST)
-    public ResponseEntity<String> addTask(@RequestBody Task task) {
+    public ResponseEntity<Integer> addTask(@RequestBody Task task) {
         task = tasksRepository.save(task);
 
         System.out.println("Added task: " + task);
-        return new ResponseEntity<>("Task added: " + task, HttpStatus.OK);
+        return new ResponseEntity<>(task.getTaskId(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update-task", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateTask(@RequestBody Task task) {
+    public ResponseEntity<Boolean> updateTask(@RequestBody Task task) {
         task = tasksRepository.save(task);
 
         System.out.println("Updated task: " + task);
-        return new ResponseEntity<>("Task updated: " + task, HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete-task/{taskId}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deleteTask(@PathVariable int taskId) {
+    public ResponseEntity<Boolean> deleteTask(@PathVariable int taskId) {
         Task taskToDelete = new Task(); taskToDelete.setTaskId(taskId);
         tasksRepository.delete(taskToDelete);
 
         System.out.println("Deleted task id: " + taskId);
-        return new ResponseEntity<>("Task(id) deleted: " + taskId, HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
+
+
 }
